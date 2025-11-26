@@ -1,5 +1,5 @@
 using FluentValidation;
-public class UsuarioCreateDtoValidator : AbstractValidator<usuarioCreateDto>
+public class UsuarioCreateDtoValidator : AbstractValidator< UsuarioCreateDto >
 {
     public UsuarioCreateDtoValidator()
     {

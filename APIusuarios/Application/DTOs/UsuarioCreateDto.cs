@@ -1,4 +1,4 @@
-public record usuarioCreateDto
+public record UsuarioCreateDto
 (
     string Nome,
     string Email,

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-public class UsuarioUpdateDtoValidator : AbstractValidator<UsuarioUpdateDto>
+public class UsuarioUpdateDtoValidator : AbstractValidator< UsuarioUpdateDto >
 {
     public UsuarioUpdateDtoValidator()
     {
