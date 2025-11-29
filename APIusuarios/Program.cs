@@ -1,9 +1,10 @@
+using FluentValidation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
 var app = builder.Build();
 
 //get para Listar todos os usuarios
@@ -18,15 +19,15 @@ app.MapGet("/usuarios/{id}", (int id, IUsuarioService service, CancellationToken
     return usuario != null ? Results.Ok(usuario) : Results.NotFound();
 });
 //post criar novo usuario
-app.MapPost("/usuarios", async (UsuarioCreateDto usuarioDto, IUsuarioService service, CancellationToken ct, IValidators<UsuarioCreateDto> validators) =>
+app.MapPost("/usuarios/{id}", static async (UsuarioCreateDto usuarioDto, IUsuarioService service, CancellationToken ct, IValidator<UsuarioCreateDto> validator) =>
 {
-    var validationResult = await validators.ValidateAsync(usuarioDto, ct);
-    if (!validationReusult.IsValid)
+    var validationResult = await validator.ValidateAsync(usuarioDto, ct);
+    if (!validationResult.IsValid)
     {
-        return results.ValidationProblem(validationResult.ToDictionary());
+        return Results.ValidationProblem(validationResult.ToDictionary());
     }
-    var usuario = await service.CriarAsync(usuarioDto.Nome, usuarioDto.Email, usuarioDto.Senha, usuarioDto.DataNascimento, usuarioDto.Telefone, usuarioDto.Ativo, usuarioDto.Datacriacao);
-    return results.Created($"/usuarios/{usuario.Id}",usuario);
+    var usuario = await service.CriarAsync(usuarioDto.Nome, usuarioDto.Email, usuarioDto.Senha, usuarioDto.DataNascimento, usuarioDto.Telefone);
+    return Results.Created($"/usuarios/{usuario.Id}",usuario);
 });
 //put para atualizar usuario completo
 app.MapPut("/usuarios/{id}", async (int id, UsuarioUpdateDto usuario, IUsuarioService service, CancellationToken ct) =>

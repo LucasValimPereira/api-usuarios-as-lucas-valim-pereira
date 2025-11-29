@@ -1,3 +1,8 @@
+namespace Application.Interfaces;
+
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Threading;
 public interface IUsuarioRepository
 {
     Task<IEnumerable<Usuario>> GetAllAsync(CancellationToken ct);
