@@ -11,18 +11,18 @@ namespace Application.Services
             _repo = repo;
         }
 
-        public async Task<IEnumerable<Usuario>> ListarAsync(CancellationToken ct =default)
-        {
-            return await _repo.GetAllAsync(ct);
-        }
+        // public async Task<IEnumerable<Usuario>> ListarAsync(CancellationToken ct =default)
+        // {
+        //     return await _repo.GetAllAsync(ct);
+        // }
 
-        public async Task<Usuario?> ObterAsync(int id, CancellationToken ct = default)
-        {
-            if (id <= 0)
-                throw new ArgumentException("ID inválido");
+        // public async Task<Usuario?> ObterAsync(int id, CancellationToken ct = default)
+        // {
+        //     if (id <= 0)
+        //         throw new ArgumentException("ID inválido");
 
-            return await _repo.GetByIdAsync(id, ct);
-        }
+        //     return await _repo.GetByIdAsync(id, ct);
+        // }
 
         // public async Task<UsuarioReadDto> CriarAsync(int Id, String Nome,String Email, String Senha, DateTime DataNascimento, String Telefone, bool Ativo , DateTime DataCriacao DateTime? DataAtualizacao )
         // {
@@ -70,12 +70,12 @@ namespace Application.Services
     //     return MappingExtensions.ToCreateDto(usuarioAtualizado);
     // }
 
-        Task<IEnumerable<UsuarioReadDto>> IUsuarioService.ListarAsync(CancellationToken ct)
+        public Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        Task<UsuarioReadDto?> IUsuarioService.ObterAsync(int id, CancellationToken ct)
+        public Task<UsuarioReadDto?> ObterAsync(int id, CancellationToken ct)
         {
             throw new NotImplementedException();
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj": {}
+    "C:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj": {
+    "C:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj",
+        "projectUniqueName": "C:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj",
         "projectName": "APIusuarios",
-        "projectPath": "c:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj",
+        "projectPath": "C:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj",
         "packagesPath": "C:\\Users\\Aluno.torres\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\obj\\",
+        "outputPath": "C:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Aluno.torres\\AppData\\Roaming\\NuGet\\NuGet.Config"

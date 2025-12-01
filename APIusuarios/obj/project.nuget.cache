@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Lj+cu7joXCI=",
+  "dgSpecHash": "DqC1Ayz5K74=",
   "success": true,
-  "projectFilePath": "c:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj",
+  "projectFilePath": "C:\\Users\\Aluno.torres\\Biblioteca\\Desktop\\apiusuarios\\api-usuarios-as-lucas-valim-pereira\\APIusuarios\\APIusuarios.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Aluno.torres\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "C:\\Users\\Aluno.torres\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
