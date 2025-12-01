@@ -1,0 +1,8 @@
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.csproj.AssemblyReference.cache
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.GeneratedMSBuildEditorConfig.editorconfig
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.AssemblyInfoInputs.cache
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.AssemblyInfo.cs
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.csproj.CoreCompileInputs.cache
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.MvcApplicationPartsAssemblyInfo.cs
+C:\api-usuarios-as-lucas-valim-pereira\APIusuarios\obj\Debug\net9.0\APIusuarios.MvcApplicationPartsAssemblyInfo.cache
