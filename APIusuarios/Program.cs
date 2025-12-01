@@ -1,6 +1,12 @@
 using FluentValidation;
+using infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<AppDbContext>
+(options =>
+options.UseSqlite("Data Source=app.db"));
+
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -27,7 +33,7 @@ app.MapPost("/usuarios/{id}", static async (UsuarioCreateDto usuarioDto, IUsuari
         return Results.ValidationProblem(validationResult.ToDictionary());
     }
     var usuario = await service.CriarAsync(usuarioDto.Nome, usuarioDto.Email, usuarioDto.Senha, usuarioDto.DataNascimento, usuarioDto.Telefone);
-    return Results.Created($"/usuarios/{usuario.Id}",usuario);
+    return Results.Created($"/usuarios/{}",usuario);
 });
 //put para atualizar usuario completo
 app.MapPut("/usuarios/{id}", async (int id, UsuarioUpdateDto usuario, IUsuarioService service, CancellationToken ct) =>
