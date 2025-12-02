@@ -1,11 +1,14 @@
 using FluentValidation;
 using infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>
 (options =>
 options.UseSqlite("Data Source=app.db"));
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
 
 
 // Add services to the container.
