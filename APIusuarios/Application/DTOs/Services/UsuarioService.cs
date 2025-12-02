@@ -1,4 +1,5 @@
 using Application.Interfaces;
+using Application.Services;
 
 namespace Application.Services
 {
@@ -70,9 +71,10 @@ namespace Application.Services
     //     return MappingExtensions.ToCreateDto(usuarioAtualizado);
     // }
 
-        public Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken ct)
+        public async Task<IEnumerable<UsuarioReadDto>> ListarAsync(CancellationToken ct)
         {
-            throw new NotImplementedException();
+            var usuarios = await _repo.GetAllAsync(ct);
+            return usuarios.Select(MappingExtensions.ToReadDto(usuarios));
         }
 
         public Task<UsuarioReadDto?> ObterAsync(int id, CancellationToken ct)
