@@ -1,0 +1,481 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "API Usuarios - Lucas Valim Pereira",
+		"description": "Collection para testar a API de Gerenciamento de Usuários.\n\nEndpoints implementados:\n- GET /usuarios - Lista todos os usuários ativos\n- GET /usuarios/{id} - Busca usuário por ID\n- POST /usuarios - Cria novo usuário\n- PUT /usuarios/{id} - Atualiza usuário completo\n- DELETE /usuarios/{id} - Remove usuário (soft delete)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar Usuários",
+			"item": [
+				{
+					"name": "GET - Listar todos os usuários",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Retorna a lista de todos os usuários ativos no sistema.\n\nStatus esperados:\n- 200 OK: Lista retornada com sucesso"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buscar Usuário por ID",
+			"item": [
+				{
+					"name": "GET - Buscar usuário existente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						},
+						"description": "Busca um usuário pelo seu ID.\n\nStatus esperados:\n- 200 OK: Usuário encontrado\n- 404 Not Found: Usuário não encontrado"
+					},
+					"response": []
+				},
+				{
+					"name": "GET - Buscar usuário inexistente (404)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/99999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"99999"
+							]
+						},
+						"description": "Teste para verificar resposta 404 quando usuário não existe."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Criar Usuário",
+			"item": [
+				{
+					"name": "POST - Criar usuário válido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"João Silva\",\n    \"email\": \"joao.silva@example.com\",\n    \"senha\": \"senha123\",\n    \"dataNascimento\": \"2000-01-15\",\n    \"telefone\": \"(11) 99999-9999\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Cria um novo usuário com dados válidos.\n\nStatus esperados:\n- 201 Created: Usuário criado com sucesso"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Criar usuário sem telefone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Maria Santos\",\n    \"email\": \"maria.santos@example.com\",\n    \"senha\": \"senha456\",\n    \"dataNascimento\": \"1995-06-20\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Cria usuário sem telefone (campo opcional).\n\nStatus esperados:\n- 201 Created: Usuário criado com sucesso"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Email duplicado (409)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Outro João\",\n    \"email\": \"joao.silva@example.com\",\n    \"senha\": \"senha789\",\n    \"dataNascimento\": \"1998-03-10\",\n    \"telefone\": \"(11) 88888-8888\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Tenta criar usuário com email já cadastrado.\n\nStatus esperados:\n- 409 Conflict: Email já cadastrado"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Nome muito curto (400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Jo\",\n    \"email\": \"jo@example.com\",\n    \"senha\": \"senha123\",\n    \"dataNascimento\": \"2000-01-15\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Tenta criar usuário com nome menor que 3 caracteres.\n\nStatus esperados:\n- 400 Bad Request: Validação falhou"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Senha muito curta (400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Pedro Oliveira\",\n    \"email\": \"pedro@example.com\",\n    \"senha\": \"12345\",\n    \"dataNascimento\": \"2000-01-15\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Tenta criar usuário com senha menor que 6 caracteres.\n\nStatus esperados:\n- 400 Bad Request: Validação falhou"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Menor de 18 anos (400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Jovem Demais\",\n    \"email\": \"jovem@example.com\",\n    \"senha\": \"senha123\",\n    \"dataNascimento\": \"2015-01-15\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Tenta criar usuário com menos de 18 anos.\n\nStatus esperados:\n- 400 Bad Request: O usuário deve ter pelo menos 18 anos"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Email inválido (400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Email Invalido\",\n    \"email\": \"email-invalido\",\n    \"senha\": \"senha123\",\n    \"dataNascimento\": \"2000-01-15\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Tenta criar usuário com email em formato inválido.\n\nStatus esperados:\n- 400 Bad Request: Email deve ter um formato válido"
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Telefone formato inválido (400)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Telefone Errado\",\n    \"email\": \"telefone@example.com\",\n    \"senha\": \"senha123\",\n    \"dataNascimento\": \"2000-01-15\",\n    \"telefone\": \"11999999999\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Tenta criar usuário com telefone fora do formato (XX) XXXXX-XXXX.\n\nStatus esperados:\n- 400 Bad Request: Telefone deve estar no formato (XX) XXXXX-XXXX"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Atualizar Usuário",
+			"item": [
+				{
+					"name": "PUT - Atualizar usuário válido",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"João Silva Atualizado\",\n    \"email\": \"joao.atualizado@example.com\",\n    \"dataNascimento\": \"2000-01-15\",\n    \"telefone\": \"(11) 88888-8888\",\n    \"ativo\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						},
+						"description": "Atualiza um usuário existente com dados válidos.\n\nStatus esperados:\n- 200 OK: Usuário atualizado com sucesso"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Usuário inexistente (404)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Usuário Inexistente\",\n    \"email\": \"inexistente@example.com\",\n    \"dataNascimento\": \"2000-01-15\",\n    \"telefone\": \"(11) 77777-7777\",\n    \"ativo\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/99999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"99999"
+							]
+						},
+						"description": "Tenta atualizar usuário que não existe.\n\nStatus esperados:\n- 404 Not Found: Usuário não encontrado"
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Email de outro usuário (409)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Tentativa Email Duplicado\",\n    \"email\": \"maria.santos@example.com\",\n    \"dataNascimento\": \"2000-01-15\",\n    \"telefone\": \"(11) 66666-6666\",\n    \"ativo\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						},
+						"description": "Tenta atualizar usuário com email já usado por outro usuário.\n\nStatus esperados:\n- 409 Conflict: Email já cadastrado por outro usuário"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Remover Usuário",
+			"item": [
+				{
+					"name": "DELETE - Remover usuário (soft delete)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						},
+						"description": "Remove um usuário (soft delete - marca como inativo).\n\nStatus esperados:\n- 204 No Content: Usuário removido com sucesso"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Usuário inexistente (404)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/usuarios/99999",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"usuarios",
+								"99999"
+							]
+						},
+						"description": "Tenta remover usuário que não existe.\n\nStatus esperados:\n- 404 Not Found: Usuário não encontrado"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5296",
+			"type": "string"
+		}
+	]
+}
