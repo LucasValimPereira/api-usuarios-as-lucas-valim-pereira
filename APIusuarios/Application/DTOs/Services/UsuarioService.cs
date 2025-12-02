@@ -72,7 +72,8 @@ namespace Application.Services
 
         Task<IEnumerable<UsuarioReadDto>> IUsuarioService.ListarAsync(CancellationToken ct)
         {
-            throw new NotImplementedException();
+            var usuarios = await _repo.GetAllAsync(ct);
+            return usuarios.Select(MappingExtensions.ToReadDto(usuarios));
         }
 
         Task<UsuarioReadDto?> IUsuarioService.ObterAsync(int id, CancellationToken ct)
